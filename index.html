@@ -1,0 +1,22 @@
+<script>
+
+
+const create = (n, dup, dash = '-', star = '*') =>
+    [...Array(n + 1)].map((_, i) => {
+        const
+            inc = i * 2,
+            first = dash.repeat(n - i),
+            second = star.repeat(n),
+            midOuter = star.repeat(inc),
+            midNum = n - inc,
+            third = dash.repeat(Math.abs(Math.min(midNum, 0))),
+            midInner = dash.repeat(Math.max(midNum, 0)),
+            midMax = -(n * 2 + midNum),
+            mid = (midOuter + midInner + midOuter).slice(midMax);
+
+        return (first + second + third + mid + third + second + first).repeat(dup);
+    }).join('\n');
+
+console.log(create(3, 2));
+
+</script>
